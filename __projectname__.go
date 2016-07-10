@@ -16,6 +16,7 @@ Arguments:
 Options:
   -h --help
 `
+
   var commands map[string]func(map[string]interface{})
   commands = make(map[string]func(map[string]interface{}))
   commands["foo"] = foo
