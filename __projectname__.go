@@ -16,7 +16,18 @@ Arguments:
 Options:
   -h --help
 `
+  var commands map[string]func(map[string]interface{})
+  commands = make(map[string]func(map[string]interface{}))
+  commands["foo"] = foo
 
 	arguments, _ := docopt.Parse(usage, nil, true, "", false)
-	fmt.Println(arguments)
+  for key, f := range commands {
+    if arguments[key] == true {
+      f(arguments)
+    }
+  }
+}
+
+func foo(arguments map[string]interface{}) {
+  fmt.Println(arguments)
 }
